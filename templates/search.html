@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Food Tracker</title>
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='search.css') }}">
+    </head>
+    <body>
+        <div id="header_bar">
+            <div id="searchbar_container">
+                <form method="POST">
+                    <input id="search_input" name="searchbar">
+                    <button id="search_submit">Search</button>
+                </form>
+            </div>
+        </div>
+        
+        {% for p in products%}
+        <div class="product_container">
+            <img src="{{images[loop.index0]}}"/>
+            {% for attr in p %}
+            <div class="attribute">{{ attr }}</div>
+            {%endfor%}
+        </div>
+        {%endfor%}
+
+        <!--<ul>
+            {% for item in list %}
+                <li>{{ item }}</li>
+            {%endfor%}
+        </ul>-->
+    </body>
+</html>
