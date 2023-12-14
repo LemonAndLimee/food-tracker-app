@@ -1,0 +1,6 @@
+[run]
+source = ./openfoodfacts
+omit = ./venv/*,*tests*
+
+[report]
+omit = ./venv/*,*tests*,*mi

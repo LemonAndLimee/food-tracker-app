@@ -17,5 +17,5 @@ for i in range(3):
     code = search["products"][i]["code"]
     product = api.product.get(code)
 
-    display_product(product, "product_name,quantity,stores,countries")
+    display_product(product, "product_name,quantity,stores,countries,countries_tags")
     print("")
