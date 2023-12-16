@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>Food Tracker</title>
-        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='search.css') }}">
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style.css') }}">
     </head>
     <body>
         <div id="header_bar">
@@ -22,14 +22,16 @@
             </div>
         </div>
         
-        {% for p in products%}
-        <div class="product_container">
-            <img src="{{images[loop.index0]}}"/>
-            {% for attr in p %}
-            <div class="attribute">{{ attr }}</div>
+        <div id="search_results_container">
+            {% for p in products%}
+            <div class="product_container">
+                <img class="search_product_image" src="{{images[loop.index0]}}"/>
+                {% for attr in p %}
+                <div class="attribute">{{ attr }}</div>
+                {%endfor%}
+            </div>
             {%endfor%}
         </div>
-        {%endfor%}
 
         <div id="error_msg">{{ error_message }}</div>
     </body>

@@ -5,11 +5,41 @@
     --light2: #C1E8EE;
 }
 
+@font-face {
+    font-family: ss;
+    src: url(fonts/sans-serif/SansSerifBookFLF.otf)
+}
+
 * {
     background-color: var(--light2);
     margin: 0;
     padding: 0;
+    font-family: ss;
 }
+
+/* Index */
+
+.link_to_page {
+    text-decoration: none;
+}
+.button_to_page {
+    background-color: var(--dark1);
+    color: white;
+    width: fit-content;
+    margin: auto;
+    border-radius: 10px;
+    padding: 20px 30px;
+    font-size: 30px;
+    margin-top: 100px;
+    transition: 0.5s;
+}
+.button_to_page:hover {
+    transition: 0.5s;
+    background-color: var(--dark2);
+}
+
+/* Search */
+
 form {
     background-color: var(--dark1);
     display: inline-block;
@@ -19,6 +49,7 @@ form {
     height: 100px;
     background-color: var(--dark1);
     overflow: hidden;
+    position: fixed;
 }
 #searchbar_container {
     width: fit-content;
@@ -38,7 +69,6 @@ form {
     transition: 0.5s;
     background: var(--dark1);
     color: white;
-    font-weight: bold;
     font-size: 20px;
     border-radius: 0px 30px 30px 0px;
     border: 1px solid white;
@@ -53,18 +83,19 @@ form {
 .product_container {
     background-color: white;
     width: 400px;
-    display: inline-block;
     height: 300px;
-    margin-left: 10px;
-    margin-top: 10px;
+    margin: 10px 10px;
     padding: 5px 5px;
-    vertical-align: top;
+    border-radius: 5px;
 }
 .attribute {
     background-color: white;
+    text-align: center;
+    font-size: 20px;
+    margin-top: 10px;
 }
 
-img {
+.search_product_image {
     display: block;
     height: 140px;
     margin: auto;
@@ -75,7 +106,6 @@ img {
     margin: auto;
     font-size: 20px;
     margin-top: 80px;
-    font-weight: bold;
     color: var(--dark1);
 }
 
@@ -88,7 +118,6 @@ img {
 }
 .page_button {
     font-size: 20px;
-    font-weight: bold;
     border-radius: 30px;
     background: var(--dark1);
     color: white;
@@ -98,4 +127,11 @@ img {
 }
 .page_button:disabled {
     opacity: 50%;
+}
+
+#search_results_container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    padding-top: 120px;
 }
