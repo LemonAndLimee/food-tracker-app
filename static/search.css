@@ -11,8 +11,8 @@
     padding: 0;
 }
 form {
-    overflow: hidden;
     background-color: var(--dark1);
+    display: inline-block;
 }
 #header_bar{
     width: 100%;
@@ -45,7 +45,7 @@ form {
     padding: 5px 10px;
     margin-left: -5px;
 }
-#search_submit:hover {
+#search_submit:hover, .page_button:enabled:hover {
     transition: 0.5s;
     background-color: var(--dark2);
 }
@@ -68,4 +68,34 @@ img {
     display: block;
     height: 140px;
     margin: auto;
+}
+
+#error_msg {
+    width: fit-content;
+    margin: auto;
+    font-size: 20px;
+    margin-top: 80px;
+    font-weight: bold;
+    color: var(--dark1);
+}
+
+#page_navigator_container {
+    width: fit-content;
+    float: right;
+    margin-top: -35px;
+    margin-right: 70px;
+    background: var(--dark1);
+}
+.page_button {
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 30px;
+    background: var(--dark1);
+    color: white;
+    border: 1px solid white;
+    padding: 5px 10px;
+    
+}
+.page_button:disabled {
+    opacity: 50%;
 }

@@ -12,6 +12,14 @@
                     <button id="search_submit">Search</button>
                 </form>
             </div>
+            <div id="page_navigator_container">
+                <form method="POST">
+                    <button class="page_button" name="prev_page" {{ prev_btn_enabled|default("disabled", true) }}>Prev. Page</button>
+                </form>
+                <form method="POST">
+                    <button class="page_button" name="next_page" {{ next_btn_enabled|default("disabled", true) }}>Next Page</button>
+                </form>
+            </div>
         </div>
         
         {% for p in products%}
@@ -23,10 +31,6 @@
         </div>
         {%endfor%}
 
-        <!--<ul>
-            {% for item in list %}
-                <li>{{ item }}</li>
-            {%endfor%}
-        </ul>-->
+        <div id="error_msg">{{ error_message }}</div>
     </body>
 </html>
