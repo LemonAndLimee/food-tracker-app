@@ -193,13 +193,14 @@ form {
     background-color: white;
     text-align: center;
 }
+
 #nutrition_table {
     height: 300px;
     background-color: white;
     width: fit-content;
     margin: 30px 100px;
+    display: inline-block;
 }
-
 .nutrition_table_column {
     display: inline-block;
     width: 150px;
@@ -217,4 +218,27 @@ form {
     background-color: white;
     margin-bottom: 5px;
     padding: 2px 2px;
+}
+
+#colour_grades_container {
+    display: inline-block;
+    vertical-align: top;
+    height: 150px;
+    background-color: white;
+    margin-top: 80px;
+    width: 400px;
+}
+.colour_grade {
+    display: inline-block;
+    background-color: orange;
+    font-size: 20px;
+    text-align: center;
+    padding-top: 15px;
+    width: 180px;
+    height: 40px;
+    border-radius: 20px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: white;
 }

@@ -22,7 +22,7 @@ def get_product_by_code(code:int, attributes:str):
     
     return results
 
-# return [ [headers],  [[column1], [column2], ...]] where [column] = [cell, cell, ...]
+# returns [ [headers],  [[column1], [column2], ...], [colours]] where [column] = [cell, cell, ...], and [colours] is the colour labels
 def get_nutrition_table(code:int):
     headers = ["Nutrition Info", "Per 100g", "Per Serving"]
     ATTRIBUTES = ["energy-kcal", "fat", "saturated-fat", "carbohydrates", "sugars", "fiber", "proteins", "sodium"]
@@ -78,7 +78,28 @@ def get_nutrition_table(code:int):
             except:
                 results[-1].append("N/A")
     
-    return [headers, results]
+    
+    colour_values = []
+    colour_values.append(get_colour_value(product, "fat_100g"))
+    colour_values.append(get_colour_value(product, "saturated-fat_100g"))
+    colour_values.append(get_colour_value(product, "sugars_100g"))
+    colour_values.append(get_colour_value(product, "sodium_100g"))
+    
+    return [headers, results, colour_values]
+
+# returns food label colour in line with UK food labelling
+def get_colour_value(product, attribute_name):
+    COLOURS = {"green":"#57C411", "orange":"#F5B922", "red":"#E42000", "unknown":"white"}
+    HIGH_VALUES = {"fat_100g": 17.5, "saturated-fat_100g":5, "sugars_100g":22.5, "sodium_100g":1.5}
+    LOW_VALUES = {"fat_100g":3, "saturated-fat_100g":1.5, "sugars_100g":5, "sodium_100g":0.3}
+    try:
+        value = product[attribute_name]
+        if value >= HIGH_VALUES[attribute_name]: return COLOURS["red"]
+        elif value > LOW_VALUES[attribute_name]: return COLOURS["orange"]
+        else: return COLOURS["green"]
+    except:
+        return COLOURS["unknown"]
+    
     
     
     

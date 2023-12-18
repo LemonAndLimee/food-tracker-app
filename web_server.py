@@ -51,7 +51,8 @@ def product(product_code):
     nutrition_headers = nutrition_table[0]
     nutrition_columns = nutrition_table[1]
     
-    return render_template("product.html", image=product_info[0], title=product_info[1], product=product_info[2:], names=attribute_names, nutrition_table=nutrition_columns, headers=nutrition_headers)
+    
+    return render_template("product.html", image=product_info[0], title=product_info[1], product=product_info[2:], names=attribute_names, nutrition_table=nutrition_columns, headers=nutrition_headers, colours=nutrition_table[2])
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=80)
