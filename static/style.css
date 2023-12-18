@@ -16,6 +16,39 @@
     padding: 0;
     font-family: ss;
 }
+a {
+    text-decoration: none;
+    color: var(--dark1);
+}
+b {
+    background-color: white;
+}
+
+/* Universal */
+
+#header_bar{
+    width: 100%;
+    height: 100px;
+    background-color: var(--dark1);
+    overflow: hidden;
+    position: fixed;
+}
+
+#content {
+    padding-top: 30px;
+}
+
+#home_icon {
+    height: 50px;
+    float: left;
+    background-color: var(--dark1);
+    margin: 25px 50px;
+    transition: 0.5s;
+}
+#home_icon:hover {
+    background-color: #216571;
+    transition: 0.5s;
+}
 
 /* Index */
 
@@ -44,13 +77,7 @@ form {
     background-color: var(--dark1);
     display: inline-block;
 }
-#header_bar{
-    width: 100%;
-    height: 100px;
-    background-color: var(--dark1);
-    overflow: hidden;
-    position: fixed;
-}
+
 #searchbar_container {
     width: fit-content;
     margin: auto;
@@ -87,6 +114,7 @@ form {
     margin: 10px 10px;
     padding: 5px 5px;
     border-radius: 5px;
+    border: 2px solid var(--dark2);
 }
 .attribute {
     background-color: white;
@@ -99,6 +127,7 @@ form {
     display: block;
     height: 140px;
     margin: auto;
+    max-width: 400px;
 }
 
 #error_msg {
@@ -134,4 +163,58 @@ form {
     flex-flow: row wrap;
     justify-content: center;
     padding-top: 120px;
+    background-color: var(--light2);
+}
+
+/* Product */
+
+#item_info_container {
+    background-color: white;
+    height: 700px;
+    width: 80%;
+    margin: auto;
+    margin-top: 100px;
+    border-radius: 50px 50px 50px 50px;
+}
+#title_section_container {
+    background-color: white;
+    height: 300px;
+    padding: 30px 100px;
+    padding-right: 200px;
+    border-radius: 50px 50px;
+}
+#product_image {
+    float: left;
+    max-height: 300px;
+    margin-right: 200px;
+    border-radius: 10px;
+}
+#product_title {
+    background-color: white;
+    text-align: center;
+}
+#nutrition_table {
+    height: 300px;
+    background-color: white;
+    width: fit-content;
+    margin: 30px 100px;
+}
+
+.nutrition_table_column {
+    display: inline-block;
+    width: 150px;
+    background-color: white;
+}
+.nutrition_table_cell {
+    border: 1px solid var(--dark1);
+    background-color: white;
+    margin-bottom: 5px;
+    padding: 2px 2px;
+}
+.nutrition_table_header {
+    font-weight: bold;
+    border: 1px solid var(--dark1);
+    background-color: white;
+    margin-bottom: 5px;
+    padding: 2px 2px;
 }

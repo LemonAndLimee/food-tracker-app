@@ -6,6 +6,7 @@
     </head>
     <body>
         <div id="header_bar">
+            <a href="/"><img id="home_icon" src="{{ url_for('static',filename='home_icon.png') }}"/></a>
             <div id="searchbar_container">
                 <form method="POST">
                     <input id="search_input" name="searchbar">
@@ -22,17 +23,19 @@
             </div>
         </div>
         
-        <div id="search_results_container">
-            {% for p in products%}
-            <div class="product_container">
-                <img class="search_product_image" src="{{images[loop.index0]}}"/>
-                {% for attr in p %}
-                <div class="attribute">{{ attr }}</div>
+        <div id="content">
+            <form id="search_results_container" method="POST">
+                {% for p in products%}
+                <a class="product_container" name="product" href="/product/{{codes[loop.index0]}}">
+                    <img class="search_product_image" src="{{images[loop.index0]}}"/>
+                    {% for attr in p %}
+                    <div class="attribute">{{ attr }}</div>
+                    {%endfor%}
+                </a>
                 {%endfor%}
-            </div>
-            {%endfor%}
+            </form>
+    
+            <div id="error_msg">{{ error_message }}</div>
         </div>
-
-        <div id="error_msg">{{ error_message }}</div>
     </body>
 </html>
