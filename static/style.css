@@ -242,3 +242,72 @@ form {
     font-weight: bold;
     color: white;
 }
+
+/* Add */
+
+#create_item_form {
+    border-radius: 10px;
+    background-color: var(--dark2);
+    width: 60%;
+    display: block;
+    margin: auto;
+    padding-top: 130px;
+    padding-bottom: 30px;
+}
+.create_form_label {
+    background-color: var(--dark2);
+    font-size: 1.5em;
+    color: white;
+    display: block;
+    text-align: center;
+    margin-bottom: 5px;
+}
+.create_form_input {
+    background-color: white;
+    font-size: 1.5em;
+    display: block;
+    margin: auto;
+    margin-bottom: 10px;
+    width: 80%;
+}
+.submit_btn {
+    background-color: var(--dark1);
+    color: white;
+    font-size: 20px;
+    margin-top: 20px;
+    padding: 10px 10px;
+
+    display: block;
+    margin: auto;
+    margin-top: 25px;
+    border-radius: 10px;
+}
+
+#form_nutri_table {
+    background-color: var(--dark2);
+    margin: auto;
+}
+.form_nutri_row {
+    background-color: var(--dark2);
+    display: block;
+    margin: auto;
+    width: 620px
+}
+.form_nutri_cell {
+    display: inline-block;
+    background-color: white;
+    font-size: 20px;
+    margin-bottom: 10px;
+    height: 30px;
+    width: 150px;
+    margin-right: 40px;
+}
+.form_nutri_header {
+    background-color: var(--dark2);
+    color: white;
+    font-size: 20px;
+    display: inline-block;
+    margin-bottom: 10px;
+    height: 30px;
+    width: 200px;
+}

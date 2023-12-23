@@ -1,0 +1,9 @@
+{
+    "css.styleSheets": [
+        "templates\\search.css"
+    ],
+    "files.associations": {
+        "*.css": "css",
+        "css": "css"
+      }
+}
