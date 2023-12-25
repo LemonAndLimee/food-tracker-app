@@ -1,9 +1,9 @@
 #http://127.0.0.1/
 #http://127.0.0.1/search
 
-import openfoodfacts_search
+import openfoodfacts_search, myfoodfacts
 
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, redirect
 app = Flask(__name__)
 
 @app.route("/")
@@ -68,9 +68,18 @@ def render_add_item():
 @app.route("/create", methods=["POST"])
 def create_item():
     request_dict = request.form.to_dict(flat=False)
-    print(request_dict)
     
-    return render_template("index.html")
+    for key in list(request_dict):
+        item = request_dict[key][0]
+        if item == '':
+            request_dict.pop(key)
+        else:
+            request_dict[key] = item
+    
+    if myfoodfacts.add_product(request_dict) == 0:
+        return render_template("/")
+    else:
+        return render_template("create.html", error_message="Invalid input (make sure the nutrition values are numbers)")
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=80)

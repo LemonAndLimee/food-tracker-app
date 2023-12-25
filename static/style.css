@@ -54,6 +54,7 @@ b {
 
 .link_to_page {
     text-decoration: none;
+    width: fit-content;
 }
 .button_to_page {
     background-color: var(--dark1);
@@ -63,7 +64,7 @@ b {
     border-radius: 10px;
     padding: 20px 30px;
     font-size: 30px;
-    margin-top: 100px;
+    margin-top: 80px;
     transition: 0.5s;
 }
 .button_to_page:hover {
@@ -110,9 +111,9 @@ form {
 .product_container {
     background-color: white;
     width: 400px;
-    height: 300px;
+    height: 220px;
     margin: 10px 10px;
-    padding: 5px 5px;
+    padding: 45px 5px;
     border-radius: 5px;
     border: 2px solid var(--dark2);
 }
@@ -245,6 +246,14 @@ form {
 
 /* Add */
 
+#error_message {
+    color: red;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    background-color: var(--dark2);
+}
+
 #create_item_form {
     border-radius: 10px;
     background-color: var(--dark2);
@@ -291,7 +300,8 @@ form {
     background-color: var(--dark2);
     display: block;
     margin: auto;
-    width: 620px
+    width: 620px;
+    
 }
 .form_nutri_cell {
     display: inline-block;
