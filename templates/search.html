@@ -13,7 +13,7 @@
                     <button id="search_submit">Search</button>
                 </form>
             </div>
-            <div id="page_navigator_container">
+            <div class="page_navigator_container">
                 <form method="POST">
                     <button class="page_button" name="prev_page" {{ prev_btn_enabled|default("disabled", true) }}>Prev. Page</button>
                 </form>
@@ -21,10 +21,15 @@
                     <button class="page_button" name="next_page" {{ next_btn_enabled|default("disabled", true) }}>Next Page</button>
                 </form>
             </div>
+            <div class="page_navigator_container">
+                <form method="POST">
+                    <button class="page_button" name="db_toggle">{{db_button}}</button>
+                </form>
+            </div>
         </div>
         
         <div id="content">
-            <form id="search_results_container" method="POST">
+            <form class="search_results_container" method="POST">
                 {% for p in products%}
                 <a class="product_container" name="product" href="/product/{{codes[loop.index0]}}">
                     <img class="search_product_image" src="{{images[loop.index0]}}"/>

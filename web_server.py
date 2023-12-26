@@ -2,6 +2,7 @@
 #http://127.0.0.1/search
 
 import openfoodfacts_search, myfoodfacts
+import search
 
 from flask import Flask, request, render_template, redirect
 app = Flask(__name__)
@@ -9,58 +10,38 @@ app = Flask(__name__)
 @app.route("/")
 @app.route("/index")
 def index():
+    search.reset_last_search_query()
     return render_template("index.html")
 
 @app.route("/search")
 def my_form():
-    return render_template("search.html")
+    return search.search()
 @app.route("/search", methods=["POST"])
 def post_form():
+    # when user pressed database toggle button
+    if "db_toggle" in request.form:
+        search.toggle_db()
+        return search.search()
     # when user enters a search
     if "searchbar" in request.form:
         query = request.form["searchbar"]
-        results = openfoodfacts_search.initiate_search(query, "product_name,brands,quantity")
-        if results == -1:
-            return render_template("search.html", error_message="No Search Results")
-        return render_search_page(results)
+        return search.search(query)
     # when user presses next page button
     elif "next_page" in request.form:
-        results = openfoodfacts_search.increment_page()
-        return render_search_page(results)
+        return search.move_page(increment=True)
     # when user presses previous page button
     elif "prev_page" in request.form:
-        results = openfoodfacts_search.decrement_page()
-        return render_search_page(results)
+        return search.move_page(increment=False)
     # when user clicks on product
     elif "product" in request.form:
+        search.reset_last_search_query()
         return render_template("product.html", code=request.form["product"])
     else:
-        return render_template("search.html")
-def render_search_page(search_results):
-    next_enabled = "enabled" if openfoodfacts_search.get_is_last_page() == False else "disabled"
-    prev_enabled = "enabled" if openfoodfacts_search.get_current_page_number() > 1 else "disabled"
-    return render_template("search.html", products=search_results[0], images=search_results[1], codes=search_results[2], prev_btn_enabled=prev_enabled, next_btn_enabled=next_enabled)
+        return search.search()
 
 @app.route("/product/<product_code>")
 def product(product_code):
-    attributes = "product_name,generic_name,brands,quantity,stores,categories"
-    attribute_names = ["", "", "Quantity: ", "Sold by: ", "Categories: "]
-    product_info = openfoodfacts_search.get_product_by_code(product_code, attributes)
-    
-    nutrition_table = openfoodfacts_search.get_nutrition_table(product_code)
-    nutrition_headers = nutrition_table[0]
-    nutrition_columns = nutrition_table[1]
-    
-    params= {
-        "image":product_info[0],
-        "title":product_info[1],
-        "product":product_info[2:],
-        "names":attribute_names,
-        "nutrition_table":nutrition_columns,
-        "headers":nutrition_headers,
-        "colours":nutrition_table[2]
-    }
-    return render_template("product.html", **params)
+    return search.get_product(product_code)
 
 @app.route("/create")
 def render_add_item():
@@ -77,7 +58,7 @@ def create_item():
             request_dict[key] = item
     
     if myfoodfacts.add_product(request_dict) == 0:
-        return render_template("/")
+        return redirect("/index")
     else:
         return render_template("create.html", error_message="Invalid input (make sure the nutrition values are numbers)")
 
