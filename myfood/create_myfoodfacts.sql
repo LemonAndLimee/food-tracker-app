@@ -1,4 +1,4 @@
-CREATE TABLE Product(
+CREATE TABLE Products(
     code TEXT PRIMARY KEY NOT NULL,
     product_name TEXT NOT NULL,
     generic_name TEXT,

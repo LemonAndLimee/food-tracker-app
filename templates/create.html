@@ -6,7 +6,9 @@
     </head>
     <body>
         <div id="header_bar">
-            <a href="/"><img id="home_icon" src="{{ url_for('static',filename='home_icon.png') }}"/></a>
+            <a class="header_button" href="/"><img id="home_icon" src="{{ url_for('static',filename='home_icon.png') }}"/></a>
+            <div class="header_button" id="create_mode_container"><a class="header_button_link" href="/create/generic">Create Generic Item</a></div>
+            
         </div>
 
         <form id="create_item_form" method="POST">

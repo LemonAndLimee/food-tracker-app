@@ -1,7 +1,7 @@
 #http://127.0.0.1/
 #http://127.0.0.1/search
 
-import openfoodfacts_search, myfoodfacts
+import myfoodfacts
 import search
 
 from flask import Flask, request, render_template, redirect
@@ -46,9 +46,14 @@ def product(product_code):
 @app.route("/create")
 def render_add_item():
     return render_template("create.html")
+@app.route("/create/generic")
+def render_add_generic():
+    return render_template("create-generic.html")
 @app.route("/create", methods=["POST"])
+@app.route("/create/generic", methods=["POST"])
 def create_item():
     request_dict = request.form.to_dict(flat=False)
+    is_product = True if "code" in request_dict.keys() else False
     
     for key in list(request_dict):
         item = request_dict[key][0]
@@ -57,7 +62,7 @@ def create_item():
         else:
             request_dict[key] = item
     
-    if myfoodfacts.add_product(request_dict) == 0:
+    if myfoodfacts.add(request_dict, is_product) == 0:
         return redirect("/index")
     else:
         return render_template("create.html", error_message="Invalid input (make sure the nutrition values are numbers)")

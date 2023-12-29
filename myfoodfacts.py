@@ -13,7 +13,17 @@ current_search_params = []
 current_search_list = []
 
 #returns 0 is successful, -1 if there is an error
-def add_product(product_dict:dict):
+def add(product_dict:dict, is_product:bool):
+    if is_product:
+        #validate barcode input
+        barcode = product_dict["code"]
+        try:
+            int_ver = int(barcode)
+            if len(barcode) != 13:
+                return -1
+        except:
+            return -1
+    
     for key in product_dict:
         #if attribute is a string type, add extra quotes so that they get added to the SQL statement
         if key in TEXT_ATTRIBUTES:
@@ -29,7 +39,7 @@ def add_product(product_dict:dict):
     con = sqlite3.connect("myfood\\myfoodfacts.db")
     cursor = con.cursor()
     
-    statement = "INSERT INTO {table} ({columns}) VALUES ({values});".format(table="Product", columns=",".join(product_dict.keys()), values=",".join(list(product_dict.values())))
+    statement = "INSERT INTO {table} ({columns}) VALUES ({values});".format(table="Products" if is_product else "Generics", columns=",".join(product_dict.keys()), values=",".join(list(product_dict.values())))
     
     cursor.execute(statement)
     
@@ -48,7 +58,7 @@ def search(qry:str):
     
     for i in range(len(query)):
         for j in range(len(TEXT_ATTRIBUTES)):
-            statement = "SELECT code FROM Product WHERE " + TEXT_ATTRIBUTES[j] + " LIKE '%" + query[i] + "%'"
+            statement = "SELECT code FROM Products WHERE " + TEXT_ATTRIBUTES[j] + " LIKE '%" + query[i] + "%'"
             cursor.execute(statement)
             codes = cursor.fetchall()
             for x in range(len(codes)):
@@ -85,7 +95,7 @@ def get_product(code:str, attr_list:list):
     statement = "SELECT"
     for attr in attr_list:
         statement = statement + " " + attr + ","
-    statement = statement[:-1] + " FROM Product WHERE code = '{c}'".format(c=code)
+    statement = statement[:-1] + " FROM Products WHERE code = '{c}'".format(c=code)
     cursor.execute(statement)
     result = cursor.fetchall()
     
@@ -185,8 +195,7 @@ def get_nutrition_table(code:str):
     colour_values.append(get_colour_value(product, total_attributes.index("saturates_100g"), "saturates_100g"))
     colour_values.append(get_colour_value(product, total_attributes.index("sugars_100g"), "sugars_100g"))
     colour_values.append(get_colour_value(product, total_attributes.index("sodium_100g"), "sodium_100g"))
-    print(colour_values)
-    
+
     return [headers, results, colour_values]
 
 # returns food label colour in line with UK food labelling

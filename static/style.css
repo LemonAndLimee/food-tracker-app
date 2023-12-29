@@ -119,10 +119,10 @@ form {
 
 .product_container {
     background-color: white;
-    width: 400px;
+    width: 330px;
     height: 220px;
-    margin: 10px 10px;
-    padding: 45px 5px;
+    margin: 10px 30px;
+    padding: 45px 30px;
     border-radius: 5px;
     border: 2px solid var(--dark2);
 }
@@ -137,7 +137,7 @@ form {
     display: block;
     height: 140px;
     margin: auto;
-    max-width: 400px;
+    max-width: 330px;
 }
 
 #error_msg {
@@ -303,13 +303,14 @@ form {
 
 #form_nutri_table {
     background-color: var(--dark2);
+    width: fit-content;
     margin: auto;
 }
 .form_nutri_row {
     background-color: var(--dark2);
     display: block;
     margin: auto;
-    width: 620px;
+    width: fit-content;
     
 }
 .form_nutri_cell {
@@ -329,4 +330,23 @@ form {
     margin-bottom: 10px;
     height: 30px;
     width: 200px;
+}
+
+.header_button_link {
+    background-color: var(--dark1);
+    color: var(--light1);
+    width: 200px;
+    font-size: 20px;
+}
+#create_mode_container {
+    position: relative;
+    margin: auto;
+    border: 2px solid var(--light1);
+    border-radius: 30px;
+    padding: 5px 5px;
+    margin-top: 30px;
+}
+.header_button {
+    background-color: var(--dark1);
+    width: fit-content;
 }
