@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Food Tracker</title>
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style.css') }}">
+    </head>
+    <body>
+        <div id="header_bar">
+            <a class="header_button_link" href="/"><img id="home_icon" src="{{ url_for('static',filename='home_icon.png') }}"/></a>
+        </div>
+
+        <div id="content">
+            <div id="item_info_container">
+                <div id="title_section_container">
+                    {% block item_image %}{% endblock item_image %}
+                    <h2 id="product_title">{{ title }}</h2>
+                    {% for attr in product %}
+                    <div class="attribute"><b>{{ names[loop.index0] }}</b>{{ attr }}</div>
+                    {%endfor%}
+                </div>
+                <div id="nutri_container">
+                    <div id="nutrition_table">
+                        {% for column in nutrition_table %}
+                        <div class="nutrition_table_column">
+                            <div class="nutrition_table_header">{{headers[loop.index0]}}</div>
+                            {% for cell in column %}
+                            <div class="nutrition_table_cell">{{ cell }}</div>
+                            {%endfor%}
+                        </div>
+                        {%endfor%}
+                    </div>
+                    {% block colour_values %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

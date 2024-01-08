@@ -35,13 +35,17 @@ def post_form():
     # when user clicks on product
     elif "product" in request.form:
         search.reset_last_search_query()
-        return render_template("product.html", code=request.form["product"])
+        return render_template("item.html", code=request.form["product"])
     else:
         return search.search()
 
-@app.route("/product/<product_code>")
-def product(product_code):
-    return search.get_product(product_code)
+@app.route("/item/<product_code>")
+@app.route("/<db>/item/<product_code>")
+def product(product_code, db="openfoodfacts"):
+    db_bool = search.OPENFOODFACTS_DB
+    if db == "myfoodfacts":
+        db_bool = not db_bool
+    return search.get_product_page(product_code, default_db=db_bool)
 
 @app.route("/create")
 def render_add_item():
@@ -53,6 +57,7 @@ def render_add_generic():
 @app.route("/create/generic", methods=["POST"])
 def create_item():
     request_dict = request.form.to_dict(flat=False)
+    print(request_dict)
     is_product = True if "code" in request_dict.keys() else False
     
     for key in list(request_dict):

@@ -31,7 +31,7 @@
         <div id="content">
             <form class="search_results_container" method="POST">
                 {% for p in products%}
-                <a class="product_container" name="product" href="/product/{{codes[loop.index0]}}">
+                <a class="product_container" name="product" href="/{{current_db}}/item/{{codes[loop.index0]}}">
                     <img class="search_product_image" src="{{images[loop.index0]}}"/>
                     {% for attr in p %}
                     <div class="attribute">{{ attr }}</div>

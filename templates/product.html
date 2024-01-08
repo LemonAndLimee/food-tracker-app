@@ -1,40 +1,14 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Food Tracker</title>
-        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style.css') }}">
-    </head>
-    <body>
-        <div id="header_bar">
-            <a class="header_button_link" href="/"><img id="home_icon" src="{{ url_for('static',filename='home_icon.png') }}"/></a>
-        </div>
+{% extends "item.html" %}
 
-        <div id="content">
-            <div id="item_info_container">
-                <div id="title_section_container">
-                    <img id="product_image" src="{{ image }}"/>
-                    <h2 id="product_title">{{ title }}</h2>
-                    {% for attr in product %}
-                    <div class="attribute"><b>{{ names[loop.index0] }}</b>{{ attr }}</div>
-                    {%endfor%}
-                </div>
-                <div id="nutrition_table">
-                    {% for column in nutrition_table %}
-                    <div class="nutrition_table_column">
-                        <div class="nutrition_table_header">{{headers[loop.index0]}}</div>
-                        {% for cell in column %}
-                        <div class="nutrition_table_cell">{{ cell }}</div>
-                        {%endfor%}
-                    </div>
-                    {%endfor%}
-                </div>
-                <div id="colour_grades_container">
-                    <div class="colour_grade" style="background-color: {{colours[0]}};">Fat</div>
-                    <div class="colour_grade" style="background-color: {{colours[1]}};">Saturates</div>
-                    <div class="colour_grade" style="background-color: {{colours[2]}};">Sugar</div>
-                    <div class="colour_grade" style="background-color: {{colours[3]}};">Salt</div>
-                </div>
-            </div>
-        </div>
-    </body>
-</html>
+{% block item_image %}
+<img id="product_image" src="{{ image }}"/>
+{% endblock item_image %}
+
+{% block colour_values %}
+<div id="colour_grades_container">
+        <div class="colour_grade" style="background-color: {{colours[0]}};">Fat</div>
+        <div class="colour_grade" style="background-color: {{colours[1]}};">Saturates</div>
+        <div class="colour_grade" style="background-color: {{colours[2]}};">Sugar</div>
+        <div class="colour_grade" style="background-color: {{colours[3]}};">Salt</div>
+ </div>
+{% endblock %}
