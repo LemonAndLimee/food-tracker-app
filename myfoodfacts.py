@@ -1,5 +1,7 @@
 import sqlite3
 
+db_filepath = "myfood\\myfood.db"
+
 RI_ADULT_PER_DAY = { "energy_kcal":2000, "fat":70, "saturates":20, "carbohydrates":260, "sugars":90, "fibre":30, "proteins":50, "sodium":6 }
 
 PRODUCT = 0
@@ -20,7 +22,7 @@ current_search_list = [] #contains list of current item ids that match the searc
 #returns 0 is successful, -1 if there is an error
 def add(product_dict:dict, is_product:bool):
     
-    con = sqlite3.connect("myfood\\myfoodfacts.db")
+    con = sqlite3.connect(db_filepath)
     cursor = con.cursor()
     
     if is_product:
@@ -69,7 +71,7 @@ def add(product_dict:dict, is_product:bool):
 def search(qry:str):
     query = qry.split()
     
-    con = sqlite3.connect("myfood\\myfoodfacts.db")
+    con = sqlite3.connect(db_filepath)
     cursor = con.cursor()
     
     items_dict = {}
@@ -127,7 +129,7 @@ def initiate_search(query:str):
 
 # returns [attr1, attr2, attr3, ...]
 def get_item(id:str, attr_list:list):
-    con = sqlite3.connect("myfood\\myfoodfacts.db")
+    con = sqlite3.connect(db_filepath)
     cursor = con.cursor()
     
     #gets item type and code from Items
@@ -150,17 +152,21 @@ def get_item(id:str, attr_list:list):
     
     return list(result)
 
-def get_item_id_from_code(code:str):
-    con = sqlite3.connect("myfood\\myfoodfacts.db")
+#returns (id, type)
+#returns -1 if error
+def get_item_from_code(code:str):
+    con = sqlite3.connect(db_filepath)
     cursor = con.cursor()
     
     #gets item type and code from Items
-    print("SELECT item_id FROM Items WHERE code = '{c}'".format(c=code))
-    cursor.execute("SELECT item_id FROM Items WHERE code = '{c}'".format(c=code))
-    result = cursor.fetchall()[0][0]
+    print("SELECT item_id, item_type FROM Items WHERE code = '{c}'".format(c=code))
+    cursor.execute("SELECT item_id, item_type FROM Items WHERE code = '{c}'".format(c=code))
+    try:
+        result = cursor.fetchall()[0]
+    except: return -1
     
     con.close()
-    return result
+    return (result[0], result[1])
     
 # returns (items, images, codes)
 # where items = [attr1, attr2, attr3, ...]
@@ -185,7 +191,7 @@ def get_page(page_num:int):
         current_id = current_search_list[i]
         images.append("")
         
-        con = sqlite3.connect("myfood\\myfoodfacts.db")
+        con = sqlite3.connect(db_filepath)
         cursor = con.cursor()
         #gets item type and code from Items
         cursor.execute("SELECT item_type, code FROM Items WHERE item_id = " + str(current_id))
@@ -214,7 +220,7 @@ def get_nutrition_table(id:str):
     ATTR_NAMES = ["Energy", "Fat", "of which saturates", "Carbohydrates", "of which sugars", "Fibre", "Protein", "Salt"]
     
     #gets item type and code from Items
-    con = sqlite3.connect("myfood\\myfoodfacts.db")
+    con = sqlite3.connect(db_filepath)
     cursor = con.cursor()
     cursor.execute("SELECT item_type FROM Items WHERE item_id = " + str(id))
     item_type = cursor.fetchall()[0][0]

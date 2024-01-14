@@ -67,13 +67,15 @@ def get_product_page(code:str, default_db=OPENFOODFACTS_DB):
     PRODUCT = 0
     GENERIC = 1
     item_type = PRODUCT
-    if len(code) == 13 and default_db == OPENFOODFACTS_DB: #if searching openfoodfacts
+    item = myfoodfacts.get_item_from_code(code)
+    if item == -1 and default_db == OPENFOODFACTS_DB: #if searching openfoodfacts
         item_info = openfoodfacts_search.get_product_by_code(code, ATTRIBUTES[PRODUCT])
         
         nutrition_table = openfoodfacts_search.get_nutrition_table(code)
     else: # if searching myfoodfacts
-        item_type = PRODUCT if len(code) == 13 else GENERIC
-        id = myfoodfacts.get_item_id_from_code(code)
+        id = item[0]
+        item_type = PRODUCT if item[1] == "Product" else GENERIC
+
         
         attr_list = ATTRIBUTES[item_type].split()
         item_info = myfoodfacts.get_item(id, attr_list)

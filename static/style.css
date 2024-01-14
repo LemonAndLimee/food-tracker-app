@@ -1,8 +1,15 @@
 :root {
-    --dark1: #00181C;
-    --dark2: #216571;
-    --light1: #7DC6D0;
-    --light2: #C1E8EE;
+    /*--colour1: #00181C;
+    --colour2: #216571;
+    --colour3: #7DC6D0;
+    --colour3: #C1E8EE;*/
+    --colour4: #C1E8EE;
+    --colour2: #7DC6D0;
+    --colour1: #216571;
+    --colour3: #00181C;
+    --colour5: white;
+
+    --trans_time: 0.5s;
 }
 
 @font-face {
@@ -11,14 +18,14 @@
 }
 
 * {
-    background-color: var(--light2);
+    background-color: var(--colour3);
     margin: 0;
     padding: 0;
     font-family: ss;
 }
 a {
     text-decoration: none;
-    color: var(--dark1);
+    color: var(--colour1);
 }
 b {
     background-color: white;
@@ -29,7 +36,7 @@ b {
 #header_bar{
     width: 100%;
     height: 100px;
-    background-color: var(--dark1);
+    background-color: var(--colour1);
     overflow: hidden;
     position: fixed;
 }
@@ -41,13 +48,13 @@ b {
 #home_icon {
     height: 50px;
     float: left;
-    background-color: var(--dark1);
+    background-color: var(--colour1);
     margin: 25px 50px;
-    transition: 0.5s;
+    transition: var(--trans_time);
 }
 #home_icon:hover {
-    background-color: #216571;
-    transition: 0.5s;
+    background-color: var(--colour2);
+    transition: var(--trans_time);
 }
 
 /* Index */
@@ -57,25 +64,25 @@ b {
     width: fit-content;
 }
 .button_to_page {
-    background-color: var(--dark1);
-    color: white;
+    background-color: var(--colour1);
+    color: var(--colour5);
     width: fit-content;
     margin: auto;
     border-radius: 10px;
     padding: 20px 30px;
     font-size: 30px;
     margin-top: 80px;
-    transition: 0.5s;
+    transition: var(--trans_time);
 }
 .button_to_page:hover {
-    transition: 0.5s;
-    background-color: var(--dark2);
+    transition: var(--trans_time);
+    background-color: var(--colour2);
 }
 
 /* Search */
 
 form {
-    background-color: var(--dark1);
+    background-color: var(--colour1);
     display: inline-block;
 }
 
@@ -86,48 +93,48 @@ form {
 }
 
 #search_input {
-    background-color: white;
+    background-color: var(--colour5);
     font-size: 20px;
     border-radius: 30px 0px 0px 30px;
-    border: 1px solid white;
+    border: 1px solid var(--colour5);
     padding: 5px 10px;
 }
 
 #search_submit {
-    transition: 0.5s;
-    background: var(--dark1);
-    color: white;
+    transition: var(--trans_time);
+    background: var(--colour1);
+    color: var(--colour5);
     font-size: 20px;
     border-radius: 0px 30px 30px 0px;
-    border: 1px solid white;
+    border: 1px solid var(--colour5);
     padding: 5px 10px;
     margin-left: -5px;
 }
 #search_submit:hover, .page_button:enabled:hover {
-    transition: 0.5s;
-    background-color: var(--dark2);
+    transition: var(--trans_time);
+    background-color: var(--colour2);
 }
 
 #search_mode_button {
     font-size: 20px;
     border-radius: 30px;
-    background: var(--dark1);
-    color: white;
-    border: 1px solid white;
+    background: var(--colour1);
+    color: var(--colour5);
+    border: 1px solid var(--colour5);
     padding: 5px 10px;
 }
 
 .product_container {
-    background-color: white;
+    background-color: var(--colour5);
     width: 330px;
     height: 220px;
     margin: 10px 30px;
     padding: 45px 30px;
     border-radius: 5px;
-    border: 2px solid var(--dark2);
+    border: 2px solid var(--colour2);
 }
 .attribute {
-    background-color: white;
+    background-color: var(--colour5);
     text-align: center;
     font-size: 20px;
     margin-top: 10px;
@@ -145,7 +152,7 @@ form {
     margin: auto;
     font-size: 20px;
     margin-top: 80px;
-    color: var(--dark1);
+    color: var(--colour1);
 }
 
 .page_navigator_container {
@@ -153,15 +160,15 @@ form {
     float: right;
     margin-top: -35px;
     margin-right: 3%;
-    background: var(--dark1);
-    border: 1px solid var(--dark1);
+    background: var(--colour1);
+    border: 1px solid var(--colour1);
 }
 .page_button {
     font-size: 20px;
     border-radius: 30px;
-    background: var(--dark1);
-    color: white;
-    border: 1px solid white;
+    background: var(--colour1);
+    color: var(--colour5);
+    border: 1px solid var(--colour5);
     padding: 5px 10px;
 }
 .page_button:disabled {
@@ -173,13 +180,13 @@ form {
     flex-flow: row wrap;
     justify-content: center;
     padding-top: 120px;
-    background-color: var(--light2);
+    background-color: var(--colour3);
 }
 
 /* Product */
 
 #item_info_container {
-    background-color: white;
+    background-color: var(--colour5);
     height: 700px;
     width: 80%;
     margin: auto;
@@ -187,7 +194,7 @@ form {
     border-radius: 50px 50px 50px 50px;
 }
 #title_section_container {
-    background-color: white;
+    background-color: var(--colour5);
     height: 300px;
     padding: 30px 100px;
     border-radius: 50px 50px;
@@ -199,19 +206,18 @@ form {
     border-radius: 10px;
 }
 #product_title {
-    background-color: white;
+    background-color: var(--colour5);
     text-align: center;
 }
 
 #nutri_container {
-    border: 1px solid red;
-    background-color: white;
+    background-color: var(--colour5);
     width: fit-content;
     margin: auto;
 }
 #nutrition_table {
     height: 300px;
-    background-color: white;
+    background-color: var(--colour5);
     width: fit-content;
     margin-top: 100px;
     display: inline-block;
@@ -220,18 +226,18 @@ form {
 .nutrition_table_column {
     display: inline-block;
     width: 150px;
-    background-color: white;
+    background-color: var(--colour5);
 }
 .nutrition_table_cell {
-    border: 1px solid var(--dark1);
-    background-color: white;
+    border: 1px solid var(--colour1);
+    background-color: var(--colour5);
     margin-bottom: 5px;
     padding: 2px 2px;
 }
 .nutrition_table_header {
     font-weight: bold;
-    border: 1px solid var(--dark1);
-    background-color: white;
+    border: 1px solid var(--colour1);
+    background-color: var(--colour5);
     margin-bottom: 5px;
     padding: 2px 2px;
     height: 40px;
@@ -241,7 +247,7 @@ form {
     display: inline-block;
     vertical-align: top;
     height: 150px;
-    background-color: white;
+    background-color: var(--colour5);
     margin-top: 80px;
     margin-left: 50px;
     width: 400px;
@@ -258,7 +264,7 @@ form {
     margin-right: 5px;
     margin-bottom: 10px;
     font-weight: bold;
-    color: white;
+    color: var(--colour5);
 }
 
 /* Add */
@@ -268,12 +274,12 @@ form {
     font-size: 20px;
     text-align: center;
     margin-bottom: 20px;
-    background-color: var(--dark2);
+    background-color: var(--colour2);
 }
 
 #create_item_form {
     border-radius: 10px;
-    background-color: var(--dark2);
+    background-color: var(--colour2);
     width: 60%;
     display: block;
     margin: auto;
@@ -281,15 +287,15 @@ form {
     padding-bottom: 30px;
 }
 .create_form_label {
-    background-color: var(--dark2);
+    background-color: var(--colour2);
     font-size: 1.5em;
-    color: white;
+    color: var(--colour3);
     display: block;
     text-align: center;
     margin-bottom: 5px;
 }
 .create_form_input {
-    background-color: white;
+    background-color: var(--colour5);
     font-size: 1.5em;
     display: block;
     margin: auto;
@@ -297,8 +303,8 @@ form {
     width: 80%;
 }
 .submit_btn {
-    background-color: var(--dark1);
-    color: white;
+    background-color: var(--colour3);
+    color: var(--colour5);
     font-size: 20px;
     margin-top: 20px;
     padding: 10px 10px;
@@ -307,15 +313,20 @@ form {
     margin: auto;
     margin-top: 25px;
     border-radius: 10px;
+    transition: var(--trans_time);
+}
+.submit_btn:hover {
+    background-color: var(--colour1);
+    transition: var(--trans_time);
 }
 
 #form_nutri_table {
-    background-color: var(--dark2);
+    background-color: var(--colour2);
     width: fit-content;
     margin: auto;
 }
 .form_nutri_row {
-    background-color: var(--dark2);
+    background-color: var(--colour2);
     display: block;
     margin: auto;
     width: fit-content;
@@ -323,7 +334,7 @@ form {
 }
 .form_nutri_cell {
     display: inline-block;
-    background-color: white;
+    background-color: var(--colour5);
     font-size: 20px;
     margin-bottom: 10px;
     height: 30px;
@@ -331,8 +342,8 @@ form {
     margin-right: 40px;
 }
 .form_nutri_header {
-    background-color: var(--dark2);
-    color: white;
+    background-color: var(--colour2);
+    color: var(--colour3);
     font-size: 20px;
     display: inline-block;
     margin-bottom: 10px;
@@ -341,20 +352,30 @@ form {
 }
 
 .header_button_link {
-    background-color: var(--dark1);
-    color: var(--light1);
+    background-color: var(--colour1);
+    color: var(--colour5);
     width: 200px;
     font-size: 20px;
+    transition: var(--trans_time);
+}
+.header_button_link:hover {
+    background-color: var(--colour3);
+    transition: var(--trans_time);
 }
 #create_mode_container {
     position: relative;
     margin: auto;
-    border: 2px solid var(--light1);
+    border: 2px solid var(--colour5);
     border-radius: 30px;
     padding: 5px 5px;
     margin-top: 30px;
 }
 .header_button {
-    background-color: var(--dark1);
+    background-color: var(--colour1);
     width: fit-content;
+    transition: var(--trans_time);
+}
+.header_button:hover {
+    background-color: var(--colour3);
+    transition: var(--trans_time);
 }
