@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Food Tracker</title>
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style.css') }}">
+    </head>
+    <body>
+        <div id="header_bar">
+            <a class="header_button" href="/"><img id="home_icon" src="{{ url_for('static',filename='home_icon.png') }}"/></a>
+        </div>
+
+        <div class="main_container">
+            <div id="main_graph"><img src=" {{ url_for('static', filename='daily_totals.png') }}"/></div>
+        </div>
+    </body>
+</html>

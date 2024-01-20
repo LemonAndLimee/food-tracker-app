@@ -115,7 +115,7 @@ def search(qry:str):
     for item in ordered_list:
         items_list.append(item[0])
     
-    print(items_list)
+    #print(items_list)
     return items_list
 
 #returns get_page, if no results returns -1
@@ -133,6 +133,7 @@ def get_item(id:str, attr_list:list):
     cursor = con.cursor()
     
     #gets item type and code from Items
+    #print("SELECT item_type, code FROM Items WHERE item_id = " + str(id))
     cursor.execute("SELECT item_type, code FROM Items WHERE item_id = " + str(id))
     result = cursor.fetchall()[0]
     item_type = result[0]
@@ -143,7 +144,7 @@ def get_item(id:str, attr_list:list):
     for attr in attr_list:
         statement = statement + " " + attr + ","
     statement = statement[:-1] + " FROM " + item_type + "s WHERE Code = '{c}'".format(c=code)
-    print(statement)
+    #print(statement)
     cursor.execute(statement)
     result = cursor.fetchall()[0]
     
@@ -159,7 +160,7 @@ def get_item_from_code(code:str):
     cursor = con.cursor()
     
     #gets item type and code from Items
-    print("SELECT item_id, item_type FROM Items WHERE code = '{c}'".format(c=code))
+    #print("SELECT item_id, item_type FROM Items WHERE code = '{c}'".format(c=code))
     cursor.execute("SELECT item_id, item_type FROM Items WHERE code = '{c}'".format(c=code))
     try:
         result = cursor.fetchall()[0]
@@ -266,7 +267,7 @@ def get_nutrition_table(id:str):
             try:
                 results[-1].append(str(item[total_attributes.index(attribute + "_serving")]) + append_string)
             except:
-                print("serving fail")
+                #print("serving fail")
                 results[-1].append("N/A")
     
     # last column

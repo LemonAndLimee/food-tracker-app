@@ -122,9 +122,9 @@ def get_is_last_page():
 ''' Methods for fetching product '''
 
 # returns [ image, attr1, attr2, ... ]
-def get_product_by_code(code:int, attributes:str):
+def get_product_by_code(code:int, attributes:str, include_image=True):
     attr_list = attributes.split(',')
-    attr_list.insert(0, "image_url")
+    if include_image: attr_list.insert(0, "image_url")
     product = api.product.get(code, fields=attr_list)
     
     results = []
@@ -137,6 +137,18 @@ def get_product_by_code(code:int, attributes:str):
             else:
                 results.append("Not available")
     
+    return results
+
+#returns [attr1, attr2, ...] for a given list of attributes
+#returns -1 if not available
+def get_product_attributes(code:str, attr_list:list):
+    product = api.product.get(str(code), fields=attr_list)
+    results = []
+    for i in range(len(attr_list)):
+        try:
+            results.append(product[attr_list[i]])
+        except:
+            return -1
     return results
 
 # returns [ [headers],  [[column1], [column2], ...], [colours]] where [column] = [cell, cell, ...], and [colours] is the colour labels

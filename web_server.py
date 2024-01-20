@@ -3,6 +3,8 @@
 
 import myfoodfacts
 import search
+import myfooddiary
+from datetime import datetime
 
 from flask import Flask, request, render_template, redirect
 app = Flask(__name__)
@@ -71,6 +73,12 @@ def create_item():
         return redirect("/index")
     else:
         return render_template("create.html", error_message="Invalid input (make sure the nutrition values are numbers)")
+
+@app.route("/diary")
+def render_diary():
+    today = datetime.today().strftime('%Y/%m/%d')
+    myfooddiary.plot_daily_graph(today, "static/daily_totals.png")
+    return render_template("diary.html")
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=80)
